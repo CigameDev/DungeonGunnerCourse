@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: RoomNodeType_Entrance
   m_EditorClassIdentifier: 
   roomNodeTypeName: Entrance
-  displayInNodeGraphEditor: 1
+  displayInNodeGraphEditor: 0
   isCorridor: 0
   isCorridorNS: 0
   isCorridorEW: 0
-  isEntrance: 0
+  isEntrance: 1
   isBossRoom: 0
   isNone: 0

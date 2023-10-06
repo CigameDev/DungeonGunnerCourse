@@ -18,8 +18,7 @@ public class GameResources : MonoBehaviour
         }
     }
 
-    #region Header DUNGEON
-    [Space(10)]
+    #region[Space(10)]
     [Header("DUNGEON")]
     #endregion
     #region Tooltip

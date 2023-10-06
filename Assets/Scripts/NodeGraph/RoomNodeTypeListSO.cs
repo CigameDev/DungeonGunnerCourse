@@ -10,7 +10,7 @@ public class RoomNodeTypeListSO : ScriptableObject
     [Header("ROOM NODE TYPE LIST")]
     #endregion
     #region Tooltip
-    [Tooltip("This list should be populated with all the RoomNodeTypeSO for the game - it is used instead of an enum")]
+    [Tooltip("Danh sach nay chua tat ca cac RoomNodeTypeSO trong game - su dung thay vi 1 enum")]
     #endregion
     public List<RoomNodeTypeSO> list;
 

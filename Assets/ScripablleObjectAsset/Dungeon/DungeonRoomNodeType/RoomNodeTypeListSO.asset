@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d4c24439e79734fb2cdbb3cd154b86, type: 3}
   m_Name: RoomNodeTypeListSO
   m_EditorClassIdentifier: 
-  list: []
+  list:
+  - {fileID: 11400000, guid: ce136714aed250445a63766bfce67218, type: 2}
+  - {fileID: 11400000, guid: 8136fb83112706b41923388a0ec96ef3, type: 2}
+  - {fileID: 11400000, guid: 66c78945c829e914dadf7bd002fd079a, type: 2}
+  - {fileID: 11400000, guid: a1dc1f523138b3e49aac5ba011ad253f, type: 2}
+  - {fileID: 11400000, guid: 45783178a9fd7d34a9ed4301b6041382, type: 2}
+  - {fileID: 11400000, guid: 348181fd1d81ba24e863bb50ada708c1, type: 2}
+  - {fileID: 11400000, guid: 2b615e6ce0faac842bbf70e3235c7e11, type: 2}
+  - {fileID: 11400000, guid: d27bf0719b220b940bf68e385f816683, type: 2}
+  - {fileID: 11400000, guid: c06b3cd5801bc48409e1ab646ebb5d25, type: 2}
+  - {fileID: 11400000, guid: fc99c549f373cdb45ad6ed5f8581f938, type: 2}
