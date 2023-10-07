@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
-
 public class Test : MonoBehaviour
 {
     Transform myTransform;
@@ -26,5 +25,7 @@ public class Test : MonoBehaviour
         watch.Stop();
         UnityEngine.Debug.Log("Non-cache costs : " + watch.ElapsedMilliseconds + "(ms)");
         watch.Reset();
+
+
     }
 }
