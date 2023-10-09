@@ -1,3 +1,4 @@
+using Codice.Client.Common.GameUI;
 using System;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -22,7 +23,7 @@ public class RoomNodeGraphEditor : EditorWindow
     [MenuItem("Room Node Graph Editor", menuItem = "Window/Dungeon Editor/Room Node Graph Editor")]//ten va duong dan,vao cai duong dan nay se thuc hien cau lenh duoi ,mo ra hop thoai
     private static void OpenWindow()
     {
-        GetWindow<RoomNodeGraphEditor>("Room Node Graph Editor");//neu khong co string nay thi no se lay ten la RoomNodeGraphEditor
+        GetWindow<RoomNodeGraphEditor>("Room Node Graph Editor");//ten no la Room Node Graph Editor
     }
 
     private void OnEnable()
@@ -37,6 +38,8 @@ public class RoomNodeGraphEditor : EditorWindow
         //Load Room node types
         roomNodeTypeList = GameResources.Instance.roomNodeTypeList;
     }
+
+  
 
     /// <summary>
     /// Open the room node graph editor window if a room node graph scriptable object asset is double clicked in the inspector
@@ -59,7 +62,7 @@ public class RoomNodeGraphEditor : EditorWindow
 
     
     /// <summary>
-    /// Draw Editor Gui
+    /// Duoc goi khi trinh chinh sua co su thay doi
     /// Giong nhu ham Update goi lien tuc khi bi tac dong,bat len,thay doi kich thuoc,nhan vao ...
     /// </summary>
     private void OnGUI()
@@ -201,4 +204,6 @@ public class RoomNodeGraphEditor : EditorWindow
         }    
         GUI.changed = true;
     }    
+
+    //change
 }
