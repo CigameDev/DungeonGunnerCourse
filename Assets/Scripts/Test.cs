@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 public class Test : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Test : MonoBehaviour
     private void Awake()
     {
         myTransform = transform;
+       
     }
     private void Start()
     {
@@ -24,6 +26,7 @@ public class Test : MonoBehaviour
         //watch.Stop();
         //UnityEngine.Debug.Log("Non-cache costs : " + watch.ElapsedMilliseconds + "(ms)");
         //watch.Reset();
-        
+
     }
+
 }

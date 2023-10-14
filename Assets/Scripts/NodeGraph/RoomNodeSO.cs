@@ -7,9 +7,9 @@ using UnityEngine;
 public class RoomNodeSO : ScriptableObject
 {
     
-    [HideInInspector] public string id;
-    [HideInInspector] public List<string> parentRoomNodeIDList = new List<string>();
-    [HideInInspector] public List<string> childRoomNodeIDList =  new List<string> ();
+    public string id;
+    public List<string> parentRoomNodeIDList = new List<string>();
+    public List<string> childRoomNodeIDList =  new List<string> ();
     [HideInInspector] public RoomNodeGraphSO roomNodeGraph;
     public RoomNodeTypeSO roomNodeType;
     [HideInInspector] public RoomNodeTypeListSO roomNodeTypeList;
@@ -47,11 +47,12 @@ public class RoomNodeSO : ScriptableObject
 
         int selected = roomNodeTypeList.list.FindIndex(x => x == roomNodeType);
 
+        //EditorGUILayout.Popup tao ra 1 hop thoai do xuong,chua cac lua chon cho phep nguoi dung lua chon
         int selection = EditorGUILayout.Popup("", selected, GetRoomNodeTypesToDisplay());
 
         roomNodeType = roomNodeTypeList.list[selection];
 
-        if(EditorGUI.EndChangeCheck())
+        if(EditorGUI.EndChangeCheck())//neu co bat ky su thay doi nao trong inspector ,hàm SetDirty se duoc goi,thong bao cho
             EditorUtility.SetDirty(this);
 
         GUILayout.EndArea();
@@ -64,7 +65,7 @@ public class RoomNodeSO : ScriptableObject
         
         for(int i = 0; i < roomNodeTypeList.list.Count; i++)
         {
-            if (roomNodeTypeList.list[i].displayInNodeGraphEditor)
+            if (roomNodeTypeList.list[i].displayInNodeGraphEditor)//chi co nhung phong duoc show ra (lon ,nho,vua ,hanh lang,boss,chest,none moi nam trong danh sach nay)
             {
                 roomArray[i] = roomNodeTypeList.list[i].roomNodeTypeName;
             }    
@@ -73,22 +74,20 @@ public class RoomNodeSO : ScriptableObject
     }
     /// <summary>
     /// Process events for the node
+    /// Cac su kien voi moi node ( nhan chuot,nha chuot ,keo )
     /// </summary>
     public void ProcessEvents(Event currentEvent)
     {
         switch(currentEvent.type)
         {
-            //Process Mouse Down Events
             case EventType.MouseDown:
                 ProcessMouseDownEvent(currentEvent);
                 break;
 
-            //Process Mouse Up Events
             case EventType.MouseUp:
                 ProcessMouseUpEvent(currentEvent);
                 break;
 
-            //Process Mouse Drag Events
             case EventType.MouseDrag:
                 ProcessMouseDragEvent(currentEvent);
                 break;
@@ -98,21 +97,76 @@ public class RoomNodeSO : ScriptableObject
         }
     }
 
-    private void ProcessMouseDragEvent(Event currentEvent)
-    {
-        //left click down
-        //if(currentEvent.button == 0)
-    }
-
-    private void ProcessMouseUpEvent(Event currentEvent)
-    {
-        throw new NotImplementedException();
-    }
-
     private void ProcessMouseDownEvent(Event currentEvent)
     {
-        throw new NotImplementedException();
+        if (currentEvent.button == 0)
+        {
+            ProcessLeftClickDownEvent(currentEvent);
+        }
+
+        if(currentEvent.button == 1)//chuot phai
+        {
+            ProcessRightClickDownEvent(currentEvent);
+        }    
     }
+
+    private void ProcessLeftClickDownEvent(Event currentEvent)
+    {
+        Selection.activeObject = this;//the hien khi ta chon phong nao thi phong do se hien thi khac di la duoc chon o asset(prefab)
+
+        //toggle node selection - chuyen doi lua chon
+        if (isSelected == true)
+        {
+            isSelected = false;
+        }
+        else
+        {
+            isSelected = true;
+        }
+    }
+    private void ProcessRightClickDownEvent(Event currentEvent)
+    {
+        roomNodeGraph.SetNodeToDrawConnectionLineFrom(this, currentEvent.mousePosition);
+    }
+    private void ProcessMouseDragEvent(Event currentEvent)
+    {
+        if(currentEvent.button ==0)
+        {
+            ProcessLeftMouseDragEvent(currentEvent);
+        }
+    }
+
+    private void ProcessLeftMouseDragEvent(Event currentEvent)
+    {
+        isLeftClickDragging = true;
+        DragNode(currentEvent.delta);
+        GUI.changed = true;
+    }
+
+    private void DragNode(Vector2 delta)//di chuyen cac phong trong editor day
+    {
+        rect.position += delta;
+        EditorUtility.SetDirty(this);
+    }    
+    private void ProcessMouseUpEvent(Event currentEvent)
+    {
+        // If left click up
+        if(currentEvent.button == 0)
+        {
+            ProcessLeftClickUpEvent(currentEvent);
+        }
+
+    }
+
+    private void ProcessLeftClickUpEvent(Event currentEvent)
+    {
+        if(isLeftClickDragging == true)
+        {
+            isLeftClickDragging = false;
+        }    
+    }
+
+   
 #endif
 
     #endregion Editor Code
